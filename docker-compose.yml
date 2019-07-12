@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    image: yinwenb/carbon:v2
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 500M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:8080"
+    volumes:
+      - "./node_modules:/home/node/app/node_modules"
+    networks:
+      - webnet
+networks:
+  webnet:
